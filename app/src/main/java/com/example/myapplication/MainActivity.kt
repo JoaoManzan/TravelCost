@@ -23,31 +23,45 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    private fun isValidationOk(): Boolean {
+        return (binding.editDistance.text.toString() != ""
+                &&binding.editDistance.text.isNotEmpty()
+
+                &&binding.editPrice.text.toString() != ""
+                &&binding.editPrice.text.isNotEmpty()
+
+                &&binding.editAutonomy.text.toString() != ""
+                &&binding.editAutonomy.text.isNotEmpty()
+                &&binding.editAutonomy.text.toString().toFloat() != 0f)
+    }
+
     private fun calculate()  {
 
-        val distancy = binding.editDistance.text.toString().toFloat()
+        val distance = binding.editDistance.text.toString().toFloat()
         val price = binding.editPrice.text.toString().toFloat()
         val autonomy = binding.editAutonomy.text.toString().toFloat()
 
-        val totalValue = (distancy * price) / autonomy
+        val totalValue = (distance * price) / autonomy
+
         if (isValidationOk()){
-            binding.textValue.text = "R$: ${"%.2f".format(totalValue)}"
+            try {
+                binding.textValue.text = "R$: ${"%.2f".format(totalValue)}"
+            }
+            catch (e :NumberFormatException){
+                Toast.makeText( this,
+                    R.string.button_error,
+                    Toast.LENGTH_SHORT).show()
+            }
+            catch (e :Exception){
+                Toast.makeText( this,
+                    R.string.button_error,
+                    Toast.LENGTH_SHORT).show()
+            }
         }
         else
-        Toast.makeText( this,
+
+            Toast.makeText( this,
             R.string.button_error,
             Toast.LENGTH_SHORT).show()
     }
-
-
-    private fun isValidationOk(): Boolean =
-
-    binding.editDistance.text.toString() != "" &&
-    binding.editPrice.text.toString() != "" &&
-    binding.editAutonomy.text.toString() != "" &&
-    binding.editAutonomy.text.toString().toFloat() != 0f
-
-
-
-
 }
