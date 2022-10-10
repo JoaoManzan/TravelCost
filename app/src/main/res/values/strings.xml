@@ -17,4 +17,13 @@
 
     <string name="button_error">Opá, falta algum elemento!</string>
 
+
+    //layout>login_screen
+
+    <string name="email">Email</string>
+    <string name="password">Senha</string>
+    <string name="login">Login</string>
+    <string name="sing_in">Ainda não tem cadasto? Cadastre-se!</string>
+    <string name="lost_password">Esqueceu sua senha?</string>
+
 </resources>
